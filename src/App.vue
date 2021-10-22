@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import appConfig from "@/app.config";
+import { notificationMethods } from "@/state/helpers";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "app",
+  page: {
+    // All subcomponent titles will be injected into this template.
+    titleTemplate(title) {
+      title = typeof title === "function" ? title(this.$store) : title;
+      return title ? `${title} | ${appConfig.title}` : appConfig.title;
+    },
+  },
+  methods: {
+    clearNotification: notificationMethods.clear,
+  },
+  watch: {
+    /**
+     * Clear the alert message on route change
+     */
+    // eslint-disable-next-line no-unused-vars
+    $route(to, from) {
+      // clear alert on location change
+      this.clearNotification();
+    },
+  },
+  mounted() {
+    // document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
