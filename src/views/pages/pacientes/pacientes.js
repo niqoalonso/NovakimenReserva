@@ -207,6 +207,7 @@ export default {
       this.form.rut = data.rut;
       this.form.email = data.email;
       this.form.celular = data.celular;
+      this.form.direccion = data.direccion;
       this.form.prevension_id = data.prevision;
       this.modal = true;
       this.btnCreate = false;
@@ -294,7 +295,7 @@ export default {
             `${this.urlbackend}/pacientes/validarrut/${$event.target.value}`
           )
           .then((response) => {
-            if (response.data == 1) {
+            if (response.data != 0) {
               this.rutexist = true;
             } else {
               this.rutexist = false;

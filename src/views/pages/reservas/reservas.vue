@@ -11,7 +11,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="mb-3">
-                  <label for="servicios">Servicios</label>
+                  <label for="especialidad">Especialidad</label>
                   <multiselect
                     v-model="form.especialidad_id"
                     :options="options"
@@ -39,7 +39,6 @@
                   <multiselect
                     v-model="form.id_profesional"
                     :options="optionsProfesional"
-                    track-by="id_profesional"
                     :custom-label="customLabel"
                     @input="traerHoras()"
                   ></multiselect>
@@ -76,51 +75,171 @@
     >
       <form @submit.prevent="handleSubmit">
         <div class="row">
-          <div class="col-12">
-            <div class="mb-3">
-              <label for="name" class="form-label">Event Name</label>
-              <input
-                id="name"
-                v-model="event.title"
-                type="text"
-                class="form-control"
-                placeholder="Insert Event name"
-                :class="{ 'is-invalid': submitted && $v.event.title.$error }"
-              />
-              <div
-                v-if="submitted && !$v.event.title.required"
-                class="invalid-feedback"
-              >
-                This value is required.
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="mb-3">
-              <label class="control-label form-label">Category</label>
-              <select
-                v-model="event.category"
-                class="form-control"
-                name="category"
-                :class="{ 'is-invalid': submitted && $v.event.category.errors }"
-              >
-                <option
-                  v-for="option in categories"
-                  :key="option.backgroundColor"
-                  :value="`${option.value}`"
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <label for="rut">Rut</label>
+                <input
+                  id="rut"
+                  v-model="form.rut"
+                  type="text"
+                  class="form-control"
+                  :class="{
+                    'is-invalid': submitted && $v.form.rut.$error,
+                  }"
+                  @input="validarRut($event)"
+                />
+
+                <div
+                  v-if="submitted && $v.form.rut.$error"
+                  class="invalid-feedback"
                 >
-                  {{ option.name }}
-                </option>
-              </select>
-              <div
-                v-if="submitted && !$v.event.category.required"
-                class="invalid-feedback"
-              >
-                This value is required.
+                  <span v-if="!$v.form.rut.required"
+                    >El rut es requerido.</span
+                  >
+                </div>
+
+                <span class="text-danger" v-if="rutexist"
+                  >Rut en uso.</span
+                >
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  v-model="form.email"
+                  type="text"
+                  class="form-control"
+                  :class="{
+                    'is-invalid': submitted && $v.form.email.$error,
+                  }"
+                />
+
+                <div
+                  v-if="submitted && $v.form.email.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.form.email.required"
+                    >El Email es requerido.</span
+                  >
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <label for="nombres">Nombres</label>
+                <input
+                  id="nombres"
+                  v-model="form.nombres"
+                  type="text"
+                  class="form-control"
+                  :class="{
+                    'is-invalid': submitted && $v.form.nombres.$error,
+                  }"
+                />
+
+                <div
+                  v-if="submitted && $v.form.nombres.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.form.nombres.required"
+                    >El nombre es requerido.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <label for="apellidos">Apellidos</label>
+                <input
+                  id="apellidos"
+                  v-model="form.apellidos"
+                  type="text"
+                  class="form-control"
+                  :class="{
+                    'is-invalid': submitted && $v.form.apellidos.$error,
+                  }"
+                />
+
+                <div
+                  v-if="submitted && $v.form.apellidos.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.form.apellidos.required"
+                    >El Apellidos es requerido.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <label for="celular">Celular</label>
+                <input
+                  id="celular"
+                  v-model="form.celular"
+                  type="text"
+                  class="form-control"
+                  :class="{
+                    'is-invalid': submitted && $v.form.celular.$error,
+                  }"
+                />
+
+                <div
+                  v-if="submitted && $v.form.celular.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.form.celular.required"
+                    >El Celular es requerido.</span
+                  >
+                </div>
+                
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <label for="direccion">Dirección</label>
+                <input
+                  id="direccion"
+                  v-model="form.direccion"
+                  type="text"
+                  class="form-control"
+                  :class="{
+                    'is-invalid': submitted && $v.form.direccion.$error,
+                  }"
+                  
+                />
+                <div
+                  v-if="submitted && $v.form.direccion.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.form.direccion.required"
+                    >El dirección es requerido.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                  <label>Previsión</label>
+              <multiselect
+                v-model="form.prevension_id"
+                :options="optionsPrevension"
+                track-by="id_prevension"
+                label="nombre"
+              ></multiselect>
+              </div>
+            </div>
+          </div>
 
         <div class="text-end pt-5 mt-3">
           <b-button variant="light" @click="hideModal">Close</b-button>
