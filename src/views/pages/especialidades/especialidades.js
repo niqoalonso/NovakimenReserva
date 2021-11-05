@@ -53,11 +53,11 @@ export default {
       sortBy: "nombre",
       sortDesc: false,
       fields: [
+        "action",
         {
           key: "nombre",
           sortable: true,
         },
-        "action",
       ],
     };
   },
@@ -145,6 +145,7 @@ export default {
     },
 
     editar(data) {
+      this.titlemodal =  "Editar Especialidad",
       this.form.nombre = data.nombre;
       this.form.id_especialidad = data.id_especialidad;
       this.modal = true;

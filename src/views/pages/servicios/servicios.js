@@ -189,7 +189,7 @@ export default {
     },
 
     editar(data) {
-        console.log(data)
+      this.titlemodal = "Editar Servicio";
       this.form.nombre = data.nombre;
       this.form.id_servicio = data.id_servicio;
       this.form.intervalo = data.intervalo;

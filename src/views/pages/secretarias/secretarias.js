@@ -181,6 +181,7 @@ export default {
     },
 
     editar(data) {
+      this.titlemodal = "Editar Secretaria";
       this.form.nombres = data.nombres;
       this.form.apellidos = data.apellidos;
       this.form.id_sucursal = data.id_sucursal;

@@ -5,27 +5,26 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Listado Prevision</h4>
-
-            <div class="row mt-5">
-              <div class="col-12">
-                <button
+          <div class="card-body row">
+            <div class="col-6">
+              <h5>Gestión Prevision</h5>
+            </div>
+            <div class="col-6">
+              <button
                   type="button"
-                  class="btn btn-success waves-effect waves-light float-end"
+                  class="btn btn-success btn-sm waves-effect waves-light float-end"
                   v-b-modal.crearprevision
                   @click="modalNuevo"
                 >
                   <i class="fas fa-plus-circle"></i>
                   Crear prevision
                 </button>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-12">
+      <div class="col-lg-6">
         <div class="card">
           <div class="card-body">
             <div class="row mt-4">

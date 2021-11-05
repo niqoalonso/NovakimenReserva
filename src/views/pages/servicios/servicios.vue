@@ -5,21 +5,20 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Listado Servicios</h4>
-
-            <div class="row mt-5">
-              <div class="col-12">
-                <button
+          <div class="card-body row">
+            <div class="col-6">
+              <h5>Gestión Servicios</h5>
+            </div>
+            <div class="col-6">
+              <button
                   type="button"
-                  class="btn btn-success waves-effect waves-light float-end"
+                  class="btn btn-success btn-sm waves-effect waves-light float-end"
                   v-b-modal.crearservicio
                   @click="modalNuevo"
                 >
                   <i class="fas fa-plus-circle"></i>
                   Crear servicio
                 </button>
-              </div>
             </div>
           </div>
         </div>

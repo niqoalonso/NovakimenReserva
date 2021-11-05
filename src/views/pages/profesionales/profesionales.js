@@ -233,7 +233,8 @@ export default {
     },
 
     editar(data) {
-        this.form.rut = data.rut;
+      this.titlemodal = "Editar Profesional";
+      this.form.rut = data.rut;
       this.form.nombres = data.nombres;
       this.form.id_profesional = data.id_profesional;
       this.form.apellidos = data.apellidos;

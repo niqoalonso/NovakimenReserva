@@ -170,7 +170,7 @@ export default {
     },
 
     editar(data) {
-      console.log(data);
+      this.titlemodal = "Editar Sucursal";
       this.form.nombre = data.nombre;
       this.form.id_sucursal = data.id_sucursal;
       this.form.direccion = data.direccion;

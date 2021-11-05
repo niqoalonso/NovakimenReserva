@@ -68,8 +68,12 @@ export default {
         eventLimit: true, view:{
           timeGrid:{
             eventLimit: 1
+          },
+          agenda: {
+            eventLimit: 1
           }
         },
+        eventOverlap: false,
         eventDrop: this.move,
         weekends: true,
         selectable: false,
@@ -147,6 +151,7 @@ export default {
   },
   mounted() {
     this.traerEspecialidad();
+    this.traerPrevision();
   },
   methods: {
     // label optionsProfesional
@@ -493,7 +498,7 @@ export default {
           if (res.data.horario) {
             this.calendarOptions.slotMinTime = res.data.horario.hora_inicio;
             this.calendarOptions.slotMaxTime = res.data.horario.hora_fin;
-            this.calendarOptions.slotDuration = this.duracion;
+            //this.calendarOptions.slotDuration = this.duracion;
             this.calendarOptions.dateClick = this.dateClicked;
           } else {
             this.calendarOptions.slotMinTime = "00:00:00";
